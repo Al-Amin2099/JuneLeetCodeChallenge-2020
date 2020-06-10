@@ -1,0 +1,16 @@
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        sortedCosts = sorted(costs, key = lambda x:x[0]-x[1])
+        minSum = 0
+     #   diff1Sum = 0
+     #   diff2Sum = 0
+
+        for i in range(0, len(costs)):
+     #       diff1Sum = costs[i][0] - costs[i][1]
+     #      diff2Sum = costs[i][1] - costs[i][0]
+            
+            if i < len(costs) / 2:
+                minSum += sortedCosts[i][0]
+            else:
+                minSum += sortedCosts[i][1]
+        return minSum
