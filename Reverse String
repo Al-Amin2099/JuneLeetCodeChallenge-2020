@@ -1,0 +1,20 @@
+class Solution:
+    def reverseString(self, s: List[str]) -> None:    
+        head = 0
+        tail = len(s) - 1
+        
+        while head < tail:
+            chrTmp = s[head]
+            s[head] = s[tail]
+            s[tail] = chrTmp
+            
+            if head == tail: 
+                break
+            head = head + 1
+            tail = tail - 1
+       
+            
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        
