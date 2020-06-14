@@ -1,0 +1,14 @@
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.w = w
+
+    def pickIndex(self) -> int:
+        length = len(self.w)
+        rnG = random.randint(1,100000)
+        return rnG
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
