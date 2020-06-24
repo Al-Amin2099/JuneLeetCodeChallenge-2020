@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        int res = INT_MAX;
+        unordered_map<int, vector<vector<int>>> m;
+        unordered_set<int> visited{{src}};
+        for (auto flight : flights) {
+            m[flight[0]].push_back({flight[1], flight[2]});
+        }
+        helper(m, src, dst, K, visited, 0, res);
+        return (res == INT_MAX) ? -1 : res;
+    }
+    void helper(unordered_map<int, vector<vector<int>>>& m, int cur, int dst, int K, unordered_set<int>& visited, int out, int& res) {
+        if (cur == dst) {res = out; return;}
+        if (K < 0) return;
+        for (auto a : m[cur]) {
+            if (visited.count(a[0]) || out + a[1] > res) continue;
+            visited.insert(a[0]);
+            helper(m, a[0], dst, K - 1, visited, out + a[1], res);
+            visited.erase(a[0]);
+        }
+    }
+};
