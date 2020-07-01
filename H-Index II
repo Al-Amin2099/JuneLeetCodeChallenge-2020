@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void search(vector<int>& citations, int st, int ed, int& res, int sz){
+        if (st > ed){
+            return;
+        }else{
+            int mid = st + (ed-st)/2;
+            if (sz-mid == citations[mid]){
+                res = sz-mid;    
+            }else if (sz-mid > citations[mid]){
+                res = max(res, citations[mid]);
+                search(citations, mid+1, ed, res,sz);
+            }else{
+                res = max(res, sz-mid);
+                search(citations, st, mid-1, res,sz);
+            }
+        }
+    }
+    
+    int hIndex(vector<int>& citations) {
+        int res = 0;
+        int sz = citations.size();
+        search(citations, 0, sz-1, res, sz);
+        return res;        
+    }
+};
